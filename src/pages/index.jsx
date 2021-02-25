@@ -4,6 +4,7 @@ import { ExperienceBar } from '../components/ExperienceBar.tsx';
 import { Profile } from '../components/Profile.tsx';
 import { CompletedChallenges } from '../components/CompletedChallenges.tsx';
 import { Countdown } from '../components/Countdown.tsx';
+import { ChallengeBox } from '../components/ChallengeBox.tsx';
 
 export default function Home() {
   return (
@@ -20,7 +21,9 @@ export default function Home() {
           <Countdown />
         </div>
 
-        <div></div>
+        <div>
+          <ChallengeBox />
+        </div>
       </section>
     </div>
   )

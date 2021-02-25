@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from '../styles/components/ExperienceBar.module.scss';
+import { ChallengesContext } from '../contexts/ChallengesContext.tsx';
 
 // const ExperienceBarStyled = styled.header`
 //   display: flex;
@@ -35,36 +36,24 @@ import styles from '../styles/components/ExperienceBar.module.scss';
 // `
 
 export function ExperienceBar() {
-  const [experience, setExperience] = useState(0);
+  const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext);
 
-  function increaseExperience() {
-    if (experience === 600) return
-    setExperience(experience + 60);
-  }
-
-  function decreaseExperience() {
-    if (experience === 0) return
-    setExperience(experience - 60);
-  }
+  const percentToNextLevel = Math.round((currentExperience * 100) / experienceToNextLevel);
 
   return (
     <div>
       <div className={styles.experienceBar}>
         <span>0 xp</span>
         <div>
-          <div style={{ width: `${experience / 6}%` }} />
+          <div style={{ width: `${percentToNextLevel}%` }} />
           <span className={styles.currentExperience}
-            style={{ left: `${experience / 6}%` }}
+            style={{ left: `${percentToNextLevel}%` }}
           >
-            {experience} xp
+            {currentExperience} xp
           </span>
         </div>
-        <span>600 xp</span>
+        <span>{experienceToNextLevel} xp</span>
       </div>
-
-      <button onClick={decreaseExperience}>- XP</button>
-      <button onClick={increaseExperience}>+ XP</button>
-
     </div >
   );
 }
