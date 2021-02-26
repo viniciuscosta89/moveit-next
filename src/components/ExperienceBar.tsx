@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import styles from '../styles/components/ExperienceBar.module.scss';
-import { ChallengesContext } from '../contexts/ChallengesContext.tsx';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 
 // const ExperienceBarStyled = styled.header`
 //   display: flex;

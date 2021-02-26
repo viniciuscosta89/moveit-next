@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { ChallengesProvider } from '../contexts/ChallengesContext.tsx';
+import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 const GlobalStyle = createGlobalStyle`
   :root {
