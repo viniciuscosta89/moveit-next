@@ -1,5 +1,4 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -66,9 +65,7 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <ChallengesProvider>
-          <Component {...pageProps} />
-        </ChallengesProvider>
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   )
