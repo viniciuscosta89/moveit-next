@@ -107,8 +107,10 @@ export const ChallengeActive = styled.div`
 
 export const ChallengeFailedButton = styled.button`
   background-color: var(--red);
+  box-shadow: 0 4px 12px -6px var(--red);
 `
 
 export const ChallengeSucceededButton = styled.button`
   background-color: var(--green);
+  box-shadow: 0 4px 12px -6px var(--green);
 `

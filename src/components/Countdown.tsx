@@ -36,7 +36,7 @@ export function Countdown() {
           <span>
             Ciclo encerrado
           </span>
-          <img src="icons/checked.svg" alt="" />
+          <img src="icons/checked.svg" alt="Checked" />
         </CountdownButton>
       ) : (
           <>
@@ -50,7 +50,7 @@ export function Countdown() {
             ) : (
                 <CountdownButton
                   type="button"
-                onClick={startCountdown}
+                  onClick={startCountdown}
               >
                   Iniciar um ciclo
                 </CountdownButton>

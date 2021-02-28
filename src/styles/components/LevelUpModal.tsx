@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const LevelUpModalStyled = styled.div`
   .overlay {
-    background-color: rgba(242, 243, 245, 0.8);
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -12,6 +13,7 @@ export const LevelUpModalStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .3s ease-in-out;
   }
 
   .container {
@@ -23,6 +25,7 @@ export const LevelUpModalStyled = styled.div`
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     text-align: center;
     position: relative;
+    transition: all .3s ease-in-out;
   }
 
   .header {
@@ -36,20 +39,29 @@ export const LevelUpModalStyled = styled.div`
   .title {
     font-size: 2.25rem;
     color: var(--title);
+    transition: all .3s ease-in-out;
   }
 
   .text {
     font-size: 1.25rem;
     color: var(--text);
     margin-top: 0.25rem;
+    transition: all .3s ease-in-out;
   }
 
   .btn {
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
-    background: transparent;
+    background: var(--background);
     border: none;
+    border-radius: 50%;
     font-size: 0;
+    opacity: 0.75;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `
