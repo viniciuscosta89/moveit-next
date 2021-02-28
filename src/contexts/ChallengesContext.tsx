@@ -19,14 +19,14 @@ interface ChallengesContextData {
   startNewChallenge: () => void,
   resetChallenge: () => void,
   completeChallenge: () => void,
-  closeLevelUpModal: () => void
+  closeLevelUpModal: () => void,
 }
 
 interface ChallengesProviderProps {
   children: ReactNode;
   level: number;
   currentExperience: number;
-  challengesCompleted: number
+  challengesCompleted: number,
 }
 
 export const ChallengesContext = createContext({} as ChallengesContextData)

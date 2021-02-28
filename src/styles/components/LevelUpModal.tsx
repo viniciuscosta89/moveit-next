@@ -1,5 +1,7 @@
-.levelUpModal {
-  &__overlay {
+import styled from 'styled-components';
+
+export const LevelUpModalStyled = styled.div`
+  .overlay {
     background-color: rgba(242, 243, 245, 0.8);
     position: fixed;
     top: 0;
@@ -12,7 +14,7 @@
     align-items: center;
   }
 
-  &__container {
+  .container {
     background-color: var(--white);
     width: 100%;
     max-width: 400px;
@@ -23,7 +25,7 @@
     position: relative;
   }
 
-  &__header {
+  .header {
     font-size: 8.75rem;
     font-weight: 600;
     color: var(--blue);
@@ -31,18 +33,18 @@
     margin-bottom: 1rem;
   }
 
-  &__title {
+  .title {
     font-size: 2.25rem;
     color: var(--title);
   }
 
-  &__text {
+  .text {
     font-size: 1.25rem;
     color: var(--text);
     margin-top: 0.25rem;
   }
 
-  &__btn {
+  .btn {
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
@@ -50,4 +52,4 @@
     border: none;
     font-size: 0;
   }
-}
+`

@@ -1,4 +1,6 @@
-.container {
+import styled from 'styled-components';
+
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 992px;
@@ -14,4 +16,4 @@
     gap: 6.25rem;
     align-content: center;
   }
-}
+`

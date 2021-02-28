@@ -1,9 +1,12 @@
-.countdownContainer {
+import styled from 'styled-components';
+
+export const CountdownContainer = styled.div`
   display: flex;
   align-items: center;
   font-family: Rajdhani, 'sans-serif';
   font-weight: 600;
   color: var(--title);
+  transition: all 0.3s ease-in-out;
 
   > div {
     flex: 1;
@@ -17,18 +20,20 @@
     border-radius: 5px;
     font-size: 8.5rem;
     text-align: center;
+    transition: all 0.3s ease-in-out;
 
     span {
       flex: 1;
       min-width: 84px;
       padding: 0.5rem;
+      transition: all 0.3s ease-in-out;
 
       &:first-child {
-        border-right: 1px solid #f0f1f3;
+        border-right: 1px solid var(--number-divisor);
       }
 
       &:last-child {
-        border-left: 1px solid #f0f1f3;
+        border-left: 1px solid var(--number-divisor);
       }
     }
   }
@@ -36,10 +41,11 @@
   > span {
     font-size: 6.25rem;
     margin: 0 0.5rem;
+    transition: all 0.3s ease-in-out;
   }
-}
+`
 
-.countdownButton {
+export const CountdownButton = styled.button`
   width: 100%;
   height: 5rem;
 
@@ -66,17 +72,6 @@
     outline-color: var(--blue-dark);
   }
 
-  &Active {
-    background-color: var(--white);
-    color: var(--title);
-
-    &:hover {
-      background-color: var(--red);
-      color: var(--white);
-
-    }
-  }
-
   &:disabled {
     background-color: var(--white);
     border-bottom: 4px solid var(--green);
@@ -93,28 +88,38 @@
       transform: scale3d(0 ,0 ,0);
     }
   }
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0.5;
-    transform: scale3d(0 ,0 ,0);
-  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0.5;
+      transform: scale3d(0 ,0 ,0);
+    }
 
-  20% {
-    transform: scale3d(1.2, 1.2, 1.2)
-  }
+    20% {
+      transform: scale3d(1.2, 1.2, 1.2)
+    }
 
-  40% {
-    transform: scale3d(.9, .9, .9);
-  }
+    40% {
+      transform: scale3d(.9, .9, .9);
+    }
 
-  60% {
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
+    60% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
 
-  to {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
+    to {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
   }
-}
+`
+
+export const CountdownButtonActive = styled(CountdownButton)`
+  background-color: var(--white);
+  color: var(--title);
+
+  &:hover {
+    background-color: var(--red);
+    color: var(--white);
+  }
+`

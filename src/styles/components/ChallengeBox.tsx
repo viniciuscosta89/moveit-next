@@ -1,4 +1,6 @@
-.challengeBoxContainer {
+import styled from 'styled-components';
+
+export const ChallengeBoxContainer = styled.div`
   height: 100%;
 
   background-color: var(--white);
@@ -12,9 +14,10 @@
   justify-content: center;
 
   text-align: center;
-}
+  transition: all 0.3s ease-in-out;
+`
 
-.challengeNotActive {
+export const ChallengeNotActive = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,9 +40,9 @@
       margin-bottom: 1rem;
     }
   }
-}
+`
 
-.challengeActive {
+export const ChallengeActive = styled.div`
   height: 100%;
 
   display: flex;
@@ -100,12 +103,12 @@
       }
     }
   }
-}
+`
 
-.challengeFailedButton {
+export const ChallengeFailedButton = styled.button`
   background-color: var(--red);
-}
+`
 
-.challengeSucceededButton {
+export const ChallengeSucceededButton = styled.button`
   background-color: var(--green);
-}
+`
