@@ -63,6 +63,7 @@ export const ChallengeActive = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1rem;
 
     strong {
       color: var(--title);
@@ -82,8 +83,6 @@ export const ChallengeActive = styled.div`
     gap: 1rem;
 
     button {
-      height: 3rem;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -93,13 +92,24 @@ export const ChallengeActive = styled.div`
 
       color: var(--white);
 
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 600;
 
       transition: all 0.3s ease-in-out;
 
+      padding: 1rem 0.5rem;
+
+      @media (min-width: 720px) {
+        font-size: 1rem;
+      }
+
       &:hover {
         filter: brightness(0.9);
+        transform: translateY(-4px);
+      }
+
+      &:active {
+        transform: translateY(-2px);
       }
     }
   }
@@ -108,9 +118,25 @@ export const ChallengeActive = styled.div`
 export const ChallengeFailedButton = styled.button`
   background-color: var(--red);
   box-shadow: 0 4px 12px -6px var(--red);
+
+  &:hover {
+    box-shadow: 0 8px 18px -6px var(--red);
+  }
+
+  &:active {
+    box-shadow: 0 6px 16px -6px var(--red);
+  }
 `
 
 export const ChallengeSucceededButton = styled.button`
   background-color: var(--green);
   box-shadow: 0 4px 12px -6px var(--green);
+
+  &:hover {
+    box-shadow: 0 8px 18px -6px var(--green);
+  }
+
+  &:active {
+    box-shadow: 0 6px 16px -6px var(--green);
+  }
 `

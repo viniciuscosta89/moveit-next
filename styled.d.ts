@@ -3,6 +3,7 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     'background': string,
+    'blue': string,
     'blue-dark': string,
     'gray-line': string,
     'number-divisor': string,

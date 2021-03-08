@@ -15,7 +15,7 @@ export default function Toogle({ mode, handleChange }: toggleProps) {
           <div className="switch">
             <div className="dot"></div>
           </div>
-          <span className="toggle__label">Dark Mode</span>
+          <span className="material-icons toggle__label">mode_night</span>
         </label>
       </div>
     </ToggleStyled>

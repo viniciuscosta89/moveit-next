@@ -18,15 +18,26 @@ export const CountdownContainer = styled.div`
     background-color: var(--white);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
-    font-size: 8.5rem;
+    font-size: 5rem;
     text-align: center;
     transition: all 0.3s ease-in-out;
 
+    @media (min-width: 721px) {
+      font-size: 8.5rem;
+    }
+
+    @media (min-width: 321px) and (max-width: 720px) {
+      font-size: 7rem;
+    }
+
     span {
       flex: 1;
-      min-width: 84px;
       padding: 0.5rem;
       transition: all 0.3s ease-in-out;
+
+      @media (min-width: 720px) {
+        min-width: 84px;
+      }
 
       &:first-child {
         border-right: 1px solid var(--number-divisor);
@@ -62,8 +73,13 @@ export const CountdownButton = styled.button`
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 600;
+  margin-bottom: 3rem;
 
   transition: all 0.3s ease-in-out;
+
+  @media (min-width: 720px) {
+    margin-bottom: 0;
+  }
 
   &:hover {
     background-color: var(--blue-dark);

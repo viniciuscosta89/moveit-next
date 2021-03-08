@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const ToggleStyled = styled.div`
   position: fixed;
-  bottom: 50%;
+  bottom: 25%;
   right: 0;
 
   background-color: #424242;
   color: var(--white);
-  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: -2px 0 24px rgba(0, 0, 0, 0.25);
   border-radius: 5px 0 0 5px;
   transition: all .3s ease-in-out;
+  z-index: 10;
 
   .toggle {
     position: relative;

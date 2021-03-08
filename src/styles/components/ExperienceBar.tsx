@@ -20,6 +20,7 @@ export const ExperienceBarStyled = styled.div`
 
     > div {
       background: var(--green);
+      box-shadow: 0 0 8px var(--green);
       border-radius: 4px;
       height: 100%;
       transition: all 0.3s ease-in-out;

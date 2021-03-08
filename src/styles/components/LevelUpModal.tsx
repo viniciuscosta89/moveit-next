@@ -13,6 +13,7 @@ export const LevelUpModalStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
     transition: all .3s ease-in-out;
   }
 
@@ -37,15 +38,16 @@ export const LevelUpModalStyled = styled.div`
   }
 
   .title {
+    display: block;
     font-size: 2.25rem;
     color: var(--title);
+    margin-bottom: 1rem;
     transition: all .3s ease-in-out;
   }
 
   .text {
     font-size: 1.25rem;
     color: var(--text);
-    margin-top: 0.25rem;
     transition: all .3s ease-in-out;
   }
 
