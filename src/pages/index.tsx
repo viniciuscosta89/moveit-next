@@ -26,9 +26,6 @@ export default function Home(props: HomeProps) {
   const router = useRouter();
   const { isSideBarOpen } = useContext(SidebarContext);
 
-  console.log({ isSideBarOpen })
-
-
   useEffect(() => {
     !session ? router.push('/login') : router.push('/')
   }, [session])
@@ -74,7 +71,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { req, res } = ctx;
   const { level, currentExperience, challengesCompleted, mode } = ctx.req.cookies;
   const session = await (getSession({ req }))
-  console.log({ session })
 
   if (session && res && session.accessToken) {
     res.writeHead(302, {
@@ -90,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      mode: mode
+      mode: String(mode)
     }
   }
 }

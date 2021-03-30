@@ -5,8 +5,6 @@ import { GlobalStyles } from "../styles/components/GlobalStyles";
 import { lightTheme, darkTheme } from "../styles/components/Themes";
 import Toogle from '../components/Toggle';
 import Cookies from 'js-cookie';
-import { CookiesProvider } from "react-cookie";
-
 
 export default function App({ Component, pageProps }) {
   const [mode, setMode] = useState(pageProps.mode ?? 'light');
@@ -22,11 +20,9 @@ export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
       <GlobalStyles />
-      <CookiesProvider>
-        <Provider session={pageProps.session}>
-          <Component {...pageProps} />
-        </Provider>
-      </CookiesProvider>
+      <Provider session={pageProps.session}>
+        <Component {...pageProps} />
+      </Provider>
       <Toogle mode={mode} handleChange={modeToggler} />
     </ThemeProvider>
   )
