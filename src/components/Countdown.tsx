@@ -1,6 +1,78 @@
 import { CountdownContainer, CountdownButton, CountdownButtonActive } from '../styles/components/Countdown';
 import { useContext } from 'react';
 import { CountdownContext } from '../contexts/CountdownContext';
+import { AnimatePresence, motion } from "framer-motion";
+
+const fade = {
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+      when: "beforeChildren",
+    },
+  },
+  visibleDelay: {
+    opacity: 1,
+    transition: {
+      delay: 0.5,
+      duration: 0.3,
+      ease: "easeInOut",
+      when: "beforeChildren",
+    },
+  },
+  hidden: {
+    opacity: 0
+  },
+}
+
+const slideLeft = {
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.5,
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+  hidden: {
+    opacity: 0,
+    x: -32,
+  },
+}
+
+const slideRight = {
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.5,
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+  hidden: {
+    opacity: 0,
+    x: 32,
+  },
+}
+
+const slideBottom = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+  hidden: {
+    opacity: 0,
+    y: 32,
+  },
+}
 
 export function Countdown() {
   const {
@@ -15,49 +87,87 @@ export function Countdown() {
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
 
   return (
-    <div>
+    <>
       <CountdownContainer>
-        <div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={slideLeft}
+        >
           <span>{minuteLeft}</span>
           <span>{minuteRight}</span>
-        </div>
-        <span>:</span>
-        <div>
+        </motion.div>
+        <motion.span
+          initial="hidden"
+          animate="visibleDelay"
+          exit="hidden"
+          variants={fade}
+        >
+          :
+        </motion.span>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={slideRight}
+        >
           <span>{secondLeft}</span>
           <span>{secondRight}</span>
-        </div>
+        </motion.div>
       </CountdownContainer>
 
-      { hasFinished ? (
-        <CountdownButton
-          type="button"
-          disabled
-        >
-          <span>
-            Ciclo encerrado
-          </span>
-          <img src="icons/checked.svg" alt="Checked" />
-        </CountdownButton>
-      ) : (
-          <>
-            { isActive ? (
-              <CountdownButtonActive
-                type="button"
-                onClick={resetCountdown}
-              >
-                Abandonar ciclo
-              </CountdownButtonActive>
-            ) : (
-                <CountdownButton
+      <AnimatePresence>
+        { hasFinished ? (
+          <CountdownButton
+            type="button"
+            disabled
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={fade}
+          >
+            <span>
+              Ciclo encerrado
+            </span>
+            <motion.img
+              src="icons/checked.svg"
+              alt="Checked"
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={slideRight}
+            />
+          </CountdownButton>
+        ) : (
+            <>
+              { isActive ? (
+                <CountdownButtonActive
                   type="button"
-                  onClick={startCountdown}
-              >
-                  Iniciar um ciclo
-                </CountdownButton>
-              )
-            }
-          </>
-        )}
-    </div>
+                  onClick={resetCountdown}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  variants={fade}
+                >
+                  Abandonar ciclo
+                </CountdownButtonActive>
+              ) : (
+                  <CountdownButton
+                    type="button"
+                    onClick={startCountdown}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    variants={slideBottom}
+                >
+                    Iniciar um ciclo
+                  </CountdownButton>
+                )
+              }
+            </>
+          )}
+      </AnimatePresence>
+    </>
   )
 }

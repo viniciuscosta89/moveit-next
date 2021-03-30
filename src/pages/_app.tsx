@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Provider } from 'next-auth/client';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from "../styles/components/GlobalStyles";
 import { lightTheme, darkTheme } from "../styles/components/Themes";
 import Toogle from '../components/Toggle';
 import Cookies from 'js-cookie';
+import { CookiesProvider } from "react-cookie";
 
 
 export default function App({ Component, pageProps }) {
@@ -20,7 +22,11 @@ export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
       <GlobalStyles />
-        <Component {...pageProps} />
+      <CookiesProvider>
+        <Provider session={pageProps.session}>
+          <Component {...pageProps} />
+        </Provider>
+      </CookiesProvider>
       <Toogle mode={mode} handleChange={modeToggler} />
     </ThemeProvider>
   )

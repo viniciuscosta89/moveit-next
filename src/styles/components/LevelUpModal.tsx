@@ -9,12 +9,11 @@ export const LevelUpModalStyled = styled.div`
     bottom: 0;
     left: 0 ;
     right: 0;
+    padding: 1rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    transition: all .3s ease-in-out;
   }
 
   .container {
@@ -22,11 +21,11 @@ export const LevelUpModalStyled = styled.div`
     width: 100%;
     max-width: 400px;
     padding: 2rem 3rem;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     text-align: center;
     position: relative;
-    transition: all .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
   }
 
   .header {
@@ -57,13 +56,50 @@ export const LevelUpModalStyled = styled.div`
     top: 0.5rem;
     background: var(--background);
     border: none;
-    border-radius: 50%;
+    border-radius: var(--border-radius-round);
     font-size: 0;
     opacity: 0.75;
     transition: all .3s ease-in-out;
 
     &:hover {
       opacity: 1;
+    }
+  }
+
+  .fade {
+    &-entering {
+      opacity: 1;
+    }
+    &-entered {
+      opacity: 1;
+    }
+    &-exiting {
+      opacity: 0;
+    }
+    &-exited {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUpIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 `

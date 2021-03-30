@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from "framer-motion";
 
 export const CountdownContainer = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ export const CountdownContainer = styled.div`
 
     background-color: var(--white);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     font-size: 5rem;
     text-align: center;
     transition: all 0.3s ease-in-out;
@@ -56,7 +57,7 @@ export const CountdownContainer = styled.div`
   }
 `
 
-export const CountdownButton = styled.button`
+export const CountdownButton = styled(motion.button)`
   width: 100%;
   height: 5rem;
 
@@ -66,11 +67,11 @@ export const CountdownButton = styled.button`
   justify-content: center;
 
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 
   background-color: var(--blue);
   box-shadow: 0 8px 12px -8px var(--blue);
-  color: var(--white);
+  color: var(--white-text);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 3rem;
@@ -101,33 +102,8 @@ export const CountdownButton = styled.button`
     }
 
     > img {
-      animation: fadeIn .75s ease-in-out 0.5s forwards;
       opacity: 0.5;
       transform: scale3d(0 ,0 ,0);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0.5;
-      transform: scale3d(0 ,0 ,0);
-    }
-
-    20% {
-      transform: scale3d(1.2, 1.2, 1.2)
-    }
-
-    40% {
-      transform: scale3d(.9, .9, .9);
-    }
-
-    60% {
-      transform: scale3d(1.05, 1.05, 1.05);
-    }
-
-    to {
-      opacity: 1;
-      transform: scale3d(1, 1, 1);
     }
   }
 `

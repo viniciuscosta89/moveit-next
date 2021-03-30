@@ -2,6 +2,9 @@ import { createContext, useState, ReactNode, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { useContext } from 'react';
+import { LoginContext } from './LoginContext';
+import { AnimatePresence } from "framer-motion"
 
 interface Challenge {
   type: 'body' | 'eye',
@@ -15,11 +18,13 @@ interface ChallengesContextData {
   experienceToNextLevel: number,
   challengesCompleted: number,
   activeChallenge: Challenge,
+  isLevelUpModalOpen: boolean
   levelUp: () => void,
   startNewChallenge: () => void,
   resetChallenge: () => void,
   completeChallenge: () => void,
   closeLevelUpModal: () => void,
+  setIsLevelUpModalOpen: any
 }
 
 interface ChallengesProviderProps {
@@ -35,6 +40,7 @@ export function ChallengesProvider({
   children,
   ...rest
 }: ChallengesProviderProps) {
+  const { session } = useContext(LoginContext);
   const [level, setLevel] = useState(rest.level ?? 1);
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
@@ -49,11 +55,12 @@ export function ChallengesProvider({
   }, [])
 
   useEffect(() => {
-    Cookies.set('level', String(level));
-    Cookies.set('currentExperience', String(currentExperience));
-    Cookies.set('challengesCompleted', String(challengesCompleted));
-
-  }, [level, currentExperience, challengesCompleted])
+    if (session) {
+      Cookies.set('level', String(level));
+      Cookies.set('currentExperience', String(currentExperience));
+      Cookies.set('challengesCompleted', String(challengesCompleted));
+    }
+  }, [session, level, currentExperience, challengesCompleted])
 
   function levelUp() {
     setLevel(level + 1);
@@ -77,6 +84,10 @@ export function ChallengesProvider({
 
   function resetChallenge() {
     setActiveChallenge(null);
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 
   function completeChallenge() {
@@ -94,6 +105,10 @@ export function ChallengesProvider({
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 
   function closeLevelUpModal() {
@@ -112,12 +127,16 @@ export function ChallengesProvider({
         resetChallenge,
         completeChallenge,
         experienceToNextLevel,
-        closeLevelUpModal
+        closeLevelUpModal,
+        isLevelUpModalOpen,
+        setIsLevelUpModalOpen
       }}
     >
       {children}
 
-      {isLevelUpModalOpen && <LevelUpModal />}
+      <AnimatePresence>
+        {isLevelUpModalOpen && <LevelUpModal key="modal" />}
+      </AnimatePresence>
     </ChallengesContext.Provider>
   )
 }

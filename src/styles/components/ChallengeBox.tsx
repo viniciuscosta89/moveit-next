@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { motion } from "framer-motion";
 
-export const ChallengeBoxContainer = styled.div`
+export const ChallengeBoxContainer = styled(motion.div)`
   height: 100%;
 
   background-color: var(--white);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   padding: 1.5rem 2rem;
 
@@ -17,7 +18,7 @@ export const ChallengeBoxContainer = styled.div`
   transition: all 0.3s ease-in-out;
 `
 
-export const ChallengeNotActive = styled.div`
+export const ChallengeNotActive = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +43,7 @@ export const ChallengeNotActive = styled.div`
   }
 `
 
-export const ChallengeActive = styled.div`
+export const ChallengeActive = styled(motion.div)`
   height: 100%;
 
   display: flex;
@@ -54,6 +55,7 @@ export const ChallengeActive = styled.div`
     font-size: 1.25rem;
     padding: 0 2rem 1.5rem;
     border-bottom: 1px solid var(--gray-line);
+    margin-bottom: 2rem;
   }
 
   main {
@@ -88,9 +90,9 @@ export const ChallengeActive = styled.div`
       justify-content: center;
 
       border: none;
-      border-radius: 5px;
+      border-radius: var(--border-radius);
 
-      color: var(--white);
+      color: var(--white-text);
 
       font-size: 1.2rem;
       font-weight: 600;

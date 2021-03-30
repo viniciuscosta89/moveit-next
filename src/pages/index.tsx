@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { Container } from '../styles/pages/Home';
 import { ExperienceBar } from '../components/ExperienceBar';
 import { Profile } from '../components/Profile';
@@ -9,6 +10,9 @@ import { Countdown } from '../components/Countdown';
 import { ChallengeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { LoginProvider } from '../contexts/LoginContext';
+import { SidebarProvider, SidebarContext } from '../contexts/SidebarContext';
+import { getSession, useSession } from 'next-auth/client';
 
 interface HomeProps {
   level: number,
@@ -18,48 +22,75 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
+  const [session] = useSession();
+  const router = useRouter();
+  const { isSideBarOpen } = useContext(SidebarContext);
+
+  console.log({ isSideBarOpen })
+
+
+  useEffect(() => {
+    !session ? router.push('/login') : router.push('/')
+  }, [session])
+
   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <Container>
-        <Head>
-          <title>Início | move.it</title>
-        </Head>
+    <LoginProvider session={session}>
+      <ChallengesProvider
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+      >
+        <SidebarProvider />
+        <Container className={isSideBarOpen && 'open'}>
+          <Head>
+            <title>Início | move.it</title>
+          </Head>
 
-        <header>
-          <ExperienceBar />
-        </header>
+          <header>
+            <ExperienceBar />
+          </header>
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
 
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </Container>
-    </ChallengesProvider>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </Container>
+
+      </ChallengesProvider>
+    </LoginProvider>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { req, res } = ctx;
   const { level, currentExperience, challengesCompleted, mode } = ctx.req.cookies;
+  const session = await (getSession({ req }))
+  console.log({ session })
+
+  if (session && res && session.accessToken) {
+    res.writeHead(302, {
+      Location: "/"
+    });
+    res.end()
+    return;
+  }
 
   return {
     props: {
+      session: session,
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      mode: String(mode)
+      mode: mode
     }
   }
 }

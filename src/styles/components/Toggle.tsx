@@ -90,7 +90,7 @@ export const ToggleStyled = styled.div`
           left: -2px;
           width: 1.5rem;
           height: 1.5rem;
-          border-radius: 50%;
+          border-radius: var(--border-radius-round);
           transform: translate(0) scale(0.9);
           transition: all .3s ease-in-out;
         }

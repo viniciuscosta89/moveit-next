@@ -9,12 +9,17 @@ export const GlobalStyles = createGlobalStyle`
     --gray-line: ${({ theme }) => theme['gray-line']};
     --green: #4CD62B;
     --number-divisor: ${({ theme }) => theme['number-divisor']};
+    --purple: #4527a0;
+    --purple-dark: #311b92;
     --red: #f44336;
     --text: ${({ theme }) => theme.text};
     --text-highlight: ${({ theme }) => theme['text-highlight']};
     --title: ${({ theme }) => theme.title};
     --toggle-bg: ${({ theme }) => theme['toggle-bg']};
     --white: ${({ theme }) => theme.white};
+    --white-text: #f5f5f5;
+    --border-radius: 4px;
+    --border-radius-round: 50%;
   }
 
   @media (max-width: 1080px) {
@@ -39,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: var(--background);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    transition: all 0.50s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   body, input, button, textarea {
