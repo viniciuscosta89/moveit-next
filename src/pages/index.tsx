@@ -26,10 +26,6 @@ export default function Home(props: HomeProps) {
   const router = useRouter();
   const { isSideBarOpen } = useContext(SidebarContext);
 
-  useEffect(() => {
-    !session ? router.push('/login') : router.push('/')
-  }, [session])
-
   return (
     <LoginProvider session={session}>
       <ChallengesProvider
@@ -78,6 +74,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     });
     res.end()
     return;
+  }
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false
+      }
+    }
   }
 
   return {
